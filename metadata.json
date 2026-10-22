@@ -1,0 +1,8 @@
+{
+  "name": "Generátor dopravného značenia",
+  "description": "Aplikácia na vizuálne skladanie zvislých dopravných značiek na stĺpik a ich export do PNG podľa TP 117 a VL 6.1.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+  "permissions": []
+}
