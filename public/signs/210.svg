@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="700" height="700">
-  <circle cx="350" cy="350" r="320" fill="#FFFFFF" stroke="#D8232A" stroke-width="60"/>
-  <!-- Šípka vpravo (červená hore) -->
-  <path d="M 430 500 L 430 250 M 370 300 L 430 220 L 490 300 Z" fill="#D8232A" stroke="#D8232A" stroke-width="26" stroke-linejoin="round"/>
-  <!-- Šípka vľavo (čierna dole) -->
-  <path d="M 270 220 L 270 470 M 210 420 L 270 500 L 330 420 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="34" stroke-linejoin="round"/>
-</svg>

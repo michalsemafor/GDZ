@@ -5,7 +5,6 @@ import { Header } from './components/Header';
 import { CatalogPanel } from './components/CatalogPanel';
 import { AssemblyCanvas } from './components/AssemblyCanvas';
 import { AssemblyList } from './components/AssemblyList';
-import { UploadModal } from './components/UploadModal';
 import { Toast, ToastMessage } from './components/Toast';
 import {
   renderSvgToCanvas,
@@ -15,8 +14,8 @@ import {
 } from './utils/exportImage';
 
 export function App() {
-  // Signs catalog (starts with 62 authentic Slovak signs from signs.json)
-  const [signs, setSigns] = useState<SignData[]>(initialSignsData as SignData[]);
+  // Signs catalog (loaded directly from public/signs/ and signs.json)
+  const [signs] = useState<SignData[]>(initialSignsData as SignData[]);
 
   // Assembly starts clean on each reload (as per requirement: no localStorage persistence)
   const [assembly, setAssembly] = useState<PlacedSign[]>([]);
@@ -29,7 +28,6 @@ export function App() {
     showDimensions: false
   });
 
-  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [toast, setToast] = useState<ToastMessage | null>(null);
   const [isExporting, setIsExporting] = useState(false);
 
@@ -151,28 +149,6 @@ export function App() {
     }
   };
 
-  // Load custom signs
-  const handleCustomSignsLoaded = (newSigns: SignData[], replaceAll: boolean) => {
-    if (replaceAll) {
-      setSigns(newSigns);
-      showToast('success', `Katalóg nahradený`, `Aktuálne máte v ponuke LEN vašich ${newSigns.length} nahraných značiek.`);
-    } else {
-      setSigns((prev) => {
-        const merged = [...prev];
-        for (const ns of newSigns) {
-          const existingIdx = merged.findIndex((s) => s.code === ns.code);
-          if (existingIdx >= 0) {
-            merged[existingIdx] = { ...merged[existingIdx], ...ns };
-          } else {
-            merged.push(ns);
-          }
-        }
-        return merged;
-      });
-      showToast('success', `Katalóg aktualizovaný`, `Pridaných / aktualizovaných ${newSigns.length} značiek.`);
-    }
-  };
-
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-slate-100">
       
@@ -183,7 +159,6 @@ export function App() {
         onExportPng={handleExportPng}
         onCopyToClipboard={handleCopyToClipboard}
         onClearAssembly={handleClearAssembly}
-        onOpenUploadModal={() => setIsUploadModalOpen(true)}
         signCount={assembly.length}
         isExporting={isExporting}
       />
@@ -218,14 +193,6 @@ export function App() {
         </div>
 
       </main>
-
-      {/* Custom Upload Modal */}
-      <UploadModal
-        isOpen={isUploadModalOpen}
-        onClose={() => setIsUploadModalOpen(false)}
-        onCustomSignsLoaded={handleCustomSignsLoaded}
-        currentCount={signs.length}
-      />
 
       {/* Feedback Toast */}
       <Toast toast={toast} onClose={() => setToast(null)} />

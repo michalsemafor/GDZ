@@ -3,7 +3,6 @@ import {
   Download,
   Copy,
   Trash2,
-  Upload,
   Ruler
 } from 'lucide-react';
 import { AssemblySettings, SignSizePreset } from '../types/signs';
@@ -14,7 +13,6 @@ interface HeaderProps {
   onExportPng: () => void;
   onCopyToClipboard: () => void;
   onClearAssembly: () => void;
-  onOpenUploadModal: () => void;
   signCount: number;
   isExporting: boolean;
 }
@@ -25,7 +23,6 @@ export const Header: React.FC<HeaderProps> = ({
   onExportPng,
   onCopyToClipboard,
   onClearAssembly,
-  onOpenUploadModal,
   signCount,
   isExporting
 }) => {
@@ -61,15 +58,6 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* Custom Upload Button on Mobile */}
-            <button
-              onClick={onOpenUploadModal}
-              className="lg:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg text-xs flex items-center gap-1.5 transition-colors border border-slate-200"
-              title="Nahrať vlastné značky alebo Excel"
-            >
-              <Upload className="w-4 h-4 text-slate-500" />
-              <span>Import</span>
-            </button>
           </div>
 
           {/* Controls & Actions */}
@@ -130,16 +118,6 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
               </label>
             </div>
-
-            {/* Custom Upload on Desktop */}
-            <button
-              onClick={onOpenUploadModal}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors shadow-2xs"
-              title="Nahrať vlastné SVG značky alebo nový Excel číselník"
-            >
-              <Upload className="w-3.5 h-3.5 text-slate-500" />
-              <span>Nahrať značky</span>
-            </button>
 
             {/* Reset Button */}
             <button

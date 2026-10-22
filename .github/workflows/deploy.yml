@@ -30,6 +30,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Unpack signs ZIP archive if present
+        run: |
+          mkdir -p public/signs
+          for zipfile in znacky.zip signs.zip public/znacky.zip public/signs.zip public/signs/znacky.zip public/signs/signs.zip; do
+            if [ -f "$zipfile" ]; then
+              echo "Rozbalujem archív $zipfile do public/signs/..."
+              unzip -o -j "$zipfile" "*.svg" -d public/signs/ || unzip -o "$zipfile" -d public/signs/
+            fi
+          done
+
       - name: Sync signs data
         run: npm run sync-data
 

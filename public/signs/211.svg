@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
-  <rect x="15" y="15" width="470" height="470" rx="40" fill="#00539B" stroke="#FFFFFF" stroke-width="15"/>
-  <!-- Biela šípka hore -->
-  <path d="M 200 370 L 200 170 M 140 210 L 200 130 L 260 210 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="28" stroke-linejoin="round"/>
-  <!-- Červená šípka dole -->
-  <path d="M 310 160 L 310 320 M 265 285 L 310 350 L 355 285 Z" fill="#D8232A" stroke="#D8232A" stroke-width="22" stroke-linejoin="round"/>
-</svg>
